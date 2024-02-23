@@ -76,7 +76,6 @@ with st.sidebar:
     linkedin_url = "https://www.linkedin.com/in/mprudhvi/"
     st.markdown(f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Prudhvi Reddy, Muppala`</a>', unsafe_allow_html=True)
 
-    st.markdown("---")
     tickers = st.text_input('Enter tickers separated by space', 'AAPL MSFT GOOG').split()
     start_date = st.date_input('Start date', value=pd.to_datetime('2020-01-01'))
     end_date = st.date_input('End date', value=pd.to_datetime('today'))
