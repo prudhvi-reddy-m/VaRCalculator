@@ -72,6 +72,10 @@ if 'recent_outputs' not in st.session_state:
 # Sidebar for User Inputs
 with st.sidebar:
     st.title('📈 VaR Calculator')
+    st.write("`Created by:`")
+    linkedin_url = "https://www.linkedin.com/in/mprudhvi/"
+    st.markdown(f'<a href="{linkedin_url}" target="_blank" style="text-decoration: none; color: inherit;"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25" style="vertical-align: middle; margin-right: 10px;">`Prudhvi Reddy, Muppala`</a>', unsafe_allow_html=True)
+
     
     tickers = st.text_input('Enter tickers separated by space', 'AAPL MSFT GOOG').split()
     start_date = st.date_input('Start date', value=pd.to_datetime('2020-01-01'))
@@ -80,15 +84,6 @@ with st.sidebar:
     confidence_level = st.slider('Confidence level', min_value=0.90, max_value=0.99, value=0.95, step=0.01)
     portfolio_val = st.number_input('Portfolio value', value=100000)
     calculate_btn = st.button('Calculate VaR')
-
-    # Footer
-    st.markdown("---")  # Horizontal line to separate the content
-    st.write("`Created by:`")
-    st.write("Prudhvi Reddy, Muppala")
-    
-    # LinkedIn Logo with a link (replace 'your-linkedin-url' with the actual URL to your LinkedIn profile)
-    linkedin_url = "https://www.linkedin.com/in/mprudhvi/"
-    st.markdown(f'<a href="{linkedin_url}" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" width="25" height="25"></a>', unsafe_allow_html=True)
 
 
 
