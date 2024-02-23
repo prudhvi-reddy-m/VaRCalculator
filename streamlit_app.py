@@ -94,8 +94,7 @@ with st.sidebar:
 
 ####
 
-# Display Results on Button Click
-if calculate_btn:
+def calculate_and_display_var(tickers, start_date, end_date, rolling_window, confidence_level, portfolio_val):
     var_instance = VaR(tickers, start_date, end_date, rolling_window, confidence_level, portfolio_val)
     
     # Layout for charts
@@ -144,3 +143,22 @@ if calculate_btn:
         recent_df = pd.DataFrame(st.session_state['recent_outputs'])
         st.table(recent_df)
 
+#####
+if 'first_run' not in st.session_state or st.session_state['first_run']:
+    st.session_state['first_run'] = False
+    # Default values for first run
+    default_tickers = 'AAPL MSFT GOOG'.split()
+    default_start_date = pd.to_datetime('2020-01-01')
+    default_end_date = pd.to_datetime('today')
+    default_rolling_window = 20
+    default_confidence_level = 0.95
+    default_portfolio_val = 100000
+
+    # Perform the default calculation
+    calculate_and_display_var(default_tickers, default_start_date, default_end_date, default_rolling_window, default_confidence_level, default_portfolio_val)
+
+
+
+# Display Results on Button Click
+if calculate_btn:
+    calculate_and_display_var(tickers, start_date, end_date, rolling_window, confidence_level, portfolio_val)
