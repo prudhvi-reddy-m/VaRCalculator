@@ -31,13 +31,8 @@ class VaR:
         self.data()
         
     def data(self):
-        df = yf.download(self.ticker, self.start, self.end)
-    
-        if len(self.ticker) == 1:
-            self.adj_close_df = df[['Adj Close']]  # Ensure DataFrame structure even for single ticker
-        else:
-            self.adj_close_df = df['Adj Close']  # Multi-ticker case, pulls whole Adj Close table
-    
+        df = yf.download(self.ticker, self.start, self.end, auto_adjust=False)
+        self.adj_close_df = df["Adj Close"]
         self.log_returns_df = np.log(self.adj_close_df / self.adj_close_df.shift(1))
         self.log_returns_df = self.log_returns_df.dropna()
         self.equal_weights = np.array([1 / len(self.ticker)] * len(self.ticker))
